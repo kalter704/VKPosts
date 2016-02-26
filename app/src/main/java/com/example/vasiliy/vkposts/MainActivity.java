@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +47,41 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv;
 
+
+    String clubs[] = {
+            "85300923",
+            "34985835",
+            "33764742",
+            "8337923",
+            "59721672",
+            "39130136",
+            "36352266",
+            "46258034",
+            "11270102",
+            "57929163",
+            "24370682",
+            "41356567",
+            "77808180",
+            "39722061",
+            "68101640",
+            "47350356",
+            "62584051",
+            "17164406",
+            "55897568",
+            "13672693",
+            "61413825",
+            "59221166",
+            "39673900",
+            "47484197",
+            "32538224"
+    };
+
+
     private String[] scope = new String[]{
             VKScope.WALL
     };
+
+    boolean NNNNN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         //String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
         //System.out.println(Arrays.asList(fingerprints));
 
-        countPosts = 0;
+        countPosts = 1;
         tv = (TextView) findViewById(R.id.textView1);
         tv.setText("Опубликованно постов = " + String.valueOf(countPosts));
 
@@ -67,24 +101,69 @@ public class MainActivity extends AppCompatActivity {
 
         isGoNext = true;
 
+        ((Button) findViewById(R.id.btnStop)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NNNNN = false;
+            }
+        });
+
         //message = "Добавь меня!!!";
 
-        message = "\uD83D\uDCB0Хочешь по 50-100 заявок в день❓\uD83D\uDCB0 \n \uD83D\uDCB0Тогда тебе к нам! Добавь всех из списка \n ○〰 ○〰 ○〰 ○〰 \n \uD83D\uDCB2АДМИНЫ\uD83D\uDCB2 \n \uD83C\uDF1A @id163385541 (\uD83C\uDF3AАдминка\uD83C\uDF3A) \n \uD83C\uDF1D@id295591956 (\uD83C\uDF37Зам.Админа\uD83C\uDF37) \n \uD83D\uDC51.::VIP::.\uD83D\uDC51 \n \uD83C\uDFAF \uD83C\uDF1F@id336021593 (Ольга Ларина)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id322157495 (Лиза Драганова)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id350952179 (Иван Кобра)\uD83C\uDF1F \n \uD83C\uDFAF\uD83C\uDF1F@id262819189 (Дмитрий Некрасов)\uD83C\uDF1F \n \uD83C\uDF89 УЧАСТНИКИ \uD83C\uDF89\n ✨@id350485363 (Артур Великий)✨\n ✨@id340983842 (Алина Волкова)✨\n ✨@id221687262 (Лиза Каргина)✨\n ✨@id245084399 (Анастасия Царёва)✨ \n ✨@liza_kiseleva_09742 (Елизавета Киселёва)✨\n ✨@id191473719 (Анастасия Зимогляд)✨ \n ✨@id345261648 (Александр Сахаров)✨ \n ✨@id351201918 (Иисус Христос)✨ \n ✨@id256931905 (Катя Яроцинская)✨ \n ✨@id6254046 (Анна Шварц)✨ \n ✨@id336427015 (Дмитрий Романов) ✨ \n ✨@id282509700 (Карина Юнусова) ✨ \n ✨@id285908462 (Alina Muzychenko)✨ \n ✨@id152100209 (Артём Московский) ✨ \n ✨@id315759394 (Иван Шнайдер) ✨ \n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬● \n Хочешь в список? Пиши им с пометкой \"Хочу в список\"⬇ \n @id163385541(\uD83C\uDF3AАдминке \uD83C\uDF3A) или \n @id295591956 (\uD83C\uDF37Лиле\uD83C\uDF37) \n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬●";
+        //message = "\uD83D\uDCB0Хочешь по 50-100 заявок в день❓\uD83D\uDCB0 \n \uD83D\uDCB0Тогда тебе к нам! Добавь всех из списка \n ○〰 ○〰 ○〰 ○〰 \n \uD83D\uDCB2АДМИНЫ\uD83D\uDCB2 \n \uD83C\uDF1A @id163385541 (\uD83C\uDF3AАдминка\uD83C\uDF3A) \n \uD83C\uDF1D@id295591956 (\uD83C\uDF37Зам.Админа\uD83C\uDF37) \n \uD83D\uDC51.::VIP::.\uD83D\uDC51 \n \uD83C\uDFAF \uD83C\uDF1F@id336021593 (Ольга Ларина)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id322157495 (Лиза Драганова)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id350952179 (Иван Кобра)\uD83C\uDF1F \n \uD83C\uDFAF\uD83C\uDF1F@id262819189 (Дмитрий Некрасов)\uD83C\uDF1F \n \uD83C\uDF89 УЧАСТНИКИ \uD83C\uDF89\n ✨@id350485363 (Артур Великий)✨\n ✨@id340983842 (Алина Волкова)✨\n ✨@id221687262 (Лиза Каргина)✨\n ✨@id245084399 (Анастасия Царёва)✨ \n ✨@liza_kiseleva_09742 (Елизавета Киселёва)✨\n ✨@id191473719 (Анастасия Зимогляд)✨ \n ✨@id345261648 (Александр Сахаров)✨ \n ✨@id351201918 (Иисус Христос)✨ \n ✨@id256931905 (Катя Яроцинская)✨ \n ✨@id6254046 (Анна Шварц)✨ \n ✨@id336427015 (Дмитрий Романов) ✨ \n ✨@id282509700 (Карина Юнусова) ✨ \n ✨@id285908462 (Alina Muzychenko)✨ \n ✨@id152100209 (Артём Московский) ✨ \n ✨@id315759394 (Иван Шнайдер) ✨ \n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬● \n Хочешь в список? Пиши им с пометкой \"Хочу в список\"⬇ \n @id163385541(\uD83C\uDF3AАдминке \uD83C\uDF3A) или \n @id295591956 (\uD83C\uDF37Лиле\uD83C\uDF37)";
+        //message = "\uD83D\uDCB0Хочешь по 50-100 заявок в день❓\uD83D\uDCB0 \n \uD83D\uDCB0Тогда тебе к нам! Добавь всех из списка \n ○〰 ○〰 ○〰 ○〰 \n \uD83D\uDCB2АДМИНЫ\uD83D\uDCB2 \n \uD83C\uDF1A @id163385541 (\uD83C\uDF3AАдминка\uD83C\uDF3A) \n \uD83C\uDF1D@id295591956 (\uD83C\uDF37Зам.Админа\uD83C\uDF37) \n \uD83D\uDC51.::VIP::.\uD83D\uDC51 \n \uD83C\uDFAF \uD83C\uDF1F@id336021593 (Ольга Ларина)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id322157495 (Лиза Драганова)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id350952179 (Иван Кобра)\uD83C\uDF1F \n \uD83C\uDFAF\uD83C\uDF1F@id262819189 (Дмитрий Некрасов)\uD83C\uDF1F \n \uD83C\uDF89 УЧАСТНИКИ \uD83C\uDF89\n ✨@id350485363 (Артур Великий)✨\n ✨@id340983842 (Алина Волкова)✨\n ✨@id221687262 (Лиза Каргина)✨\n ✨@id245084399 (Анастасия Царёва)✨ \n ✨@liza_kiseleva_09742 (Елизавета Киселёва)✨\n ✨@id191473719 (Анастасия Зимогляд)✨ \n ✨@id345261648 (Александр Сахаров)✨ \n ✨@id351201918 (Иисус Христос)✨ \n ✨@id256931905 (Катя Яроцинская)✨ \n ✨@id6254046 (Анна Шварц)✨ \n ✨@id336427015 (Дмитрий Романов) ✨ \n ✨@id282509700 (Карина Юнусова) ✨ \n ✨@id285908462 (Alina Muzychenko)✨ \n ✨@id152100209 (Артём Московский) ✨ \n ✨@id315759394 (Иван Шнайдер) ✨ \n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬● \n Хочешь в список? Пиши им с пометкой \"Хочу в список\"⬇ \n @id163385541(\uD83C\uDF3AАдминке \uD83C\uDF3A) или \n @id295591956 (\uD83C\uDF37Лиле\uD83C\uDF37) \n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬●";
 
-        startWork();
+        //message = "\uD83D\uDCB0Хочешь по 50-100 заявок в день❓\uD83D\uDCB0 \n \uD83D\uDCB0Тогда тебе к нам! Добавь всех из списка \n ○〰 ○〰 ○〰 ○〰 \n \uD83D\uDCB2АДМИНЫ\uD83D\uDCB2 \n \uD83C\uDF1A @id163385541 (\uD83C\uDF3AАдминка\uD83C\uDF3A) \n \uD83C\uDF1D@id295591956 (\uD83C\uDF37Зам.Админа\uD83C\uDF37) \n \uD83D\uDC51.::VIP::.\uD83D\uDC51 \n \uD83C\uDFAF \uD83C\uDF1F@id336021593 (Ольга Ларина)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id322157495 (Лиза Драганова)\uD83C\uDF1F \n \uD83C\uDFAF \uD83C\uDF1F@id350952179 (Артур Великий)\uD83C\uDF1F \n \uD83C\uDFAF\uD83C\uDF1F@id262819189 (Дмитрий Некрасов)\uD83C\uDF1F \n \uD83C\uDF89 УЧАСТНИКИ \uD83C\uDF89 \n ✨@id340983842 (Алина Волкова)✨ \n ✨@id221687262 (Лиза Каргина)✨ \n ✨@id245084399 (Анастасия Царёва)✨ \n ✨@liza_kiseleva_09742 (Елизавета Киселёва)✨ \n ✨@id191473719 (Анастасия Зимогляд)✨ \n ✨@id350485363 (Александр Сахаров)✨ \n ✨@id351201918 (Иисус Христос)✨ \n ✨@id256931905 (Катя Яроцинская)✨ \n ✨@id6254046 (Анна Шварц)✨ \n ✨@id345261648 (Дмитрий Романов) ✨ \n ✨@id282509700 (Карина Юнусова) ✨ \n ✨@id285908462 (Alina Muzychenko)✨ \n ✨@id336427015 (Иван Кобра)✨ \n ✨@id152100209 (Артём Московский) ✨ \n ✨@id315759394 (Иван Шнайдер) ✨\n ●▬▬▬▬▬▬▬▬ஜ ۩۞۩ ஜ▬▬▬▬▬▬▬▬● \n Хочешь в список? Пиши им с пометкой \"Хочу в список\"⬇ \n @id163385541(\uD83C\uDF3AАдминке \uD83C\uDF3A) или \n @id295591956 (\uD83C\uDF37Лиле\uD83C\uDF37)";
+
+        message = "Добавь меня!!!!!!!!!!!!";
+        NNNNN = true;
+
+
+        ((Button) findViewById(R.id.btnStart)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NNNNN = true;
+                startWork();
+            }
+        });
 
     }
 
     protected void startWork() {
         int cc = 0;
-        while(cc < 5) {
-            if(isGoNext) {
-                isGoNext = false;
-                String id = "-" + "114571061";
-                new BackgroundSendPosts().execute(id);
+/*
+        Log.d("qwerty", "clubs.length = " + String.valueOf(clubs.length));
+        for(int i = 0; i < clubs.length; ++i) {
+
+            for(int j = 0; j < 3; ++j) {
+                //if(isGoNext) {
+                    //isGoNext = false;
+                    String id = "-" + clubs[i];
+                    //String id = "-" + "114571061";
+                    long endTime = System.currentTimeMillis() + 1000;
+                    while(System.currentTimeMillis() < endTime) {}
+                    new BackgroundSendPosts().execute(id);
+                //}
+                tv.setText("Опубликованно постов = " + String.valueOf(countPosts));
             }
-            ++cc;
+            Log.d("qwerty", "i = " + String.valueOf(i));
         }
+        */
+
+        while(cc < 3) {
+            //if(isGoNext) {
+                //isGoNext = false;
+            long endTime = System.currentTimeMillis() + 1000;
+            while(System.currentTimeMillis() < endTime) {}
+            String id = "-" + "60191872";
+            //String id = "-" + "114571061";
+            new BackgroundSendPosts().execute(id);
+            ++cc;
+            //}
+            tv.setText("Опубликованно постов = " + String.valueOf(countPosts));
+        }
+
+
     }
 
     class BackgroundSendPosts extends AsyncTask<String, Map, Boolean> {
@@ -93,11 +172,12 @@ public class MainActivity extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             String captchaId = "-1";
             String captchaKey = "-1";
-            boolean isExit;
+            boolean isNotExit;
             do {
                 String result = doPost(params[0], captchaId, captchaKey);
+                Log.d("qwerty", result);
                 if (isBadResponse(result)) {
-                    isExit = false;
+                    isNotExit = true;
                     Map captcha = getCaptch(result);
 
                     publishProgress(captcha);
@@ -109,12 +189,13 @@ public class MainActivity extends AppCompatActivity {
                     captchaId = (String) captcha.get("captcha_sid");
                     captchaKey = returnCaptchaKey;
                 } else {
-                    isExit = true;
+                    isNotExit = false;
+                    isGoNext = true;
                     countPosts++;
                     captchaId = "-1";
                     captchaKey = "-1";
                 }
-            } while (isExit);
+            } while (isNotExit);
             return true;
         }
 
